@@ -266,9 +266,12 @@ export class BaseUser {
       throw new Error(`Anchor with inner text ${anchorInnerText} not found.`);
     }
 
-    // Check if anchor target is the same as the current page.
+    // Check if anchor target is the same as the current page. Any target other
+    // than an empty one or a reserved same-page keyword opens a new browsing
+    // context: not only "_blank" but also named targets such as target="new".
     const isTargetSamePage = await element.evaluate(el => {
-      return (el as HTMLAnchorElement).target !== '_blank';
+      const target = (el as HTMLAnchorElement).target;
+      return ['', '_self', '_parent', '_top'].includes(target);
     });
     if (!isTargetSamePage) {
       showMessage('Anchor target is not the same as the current page.');
