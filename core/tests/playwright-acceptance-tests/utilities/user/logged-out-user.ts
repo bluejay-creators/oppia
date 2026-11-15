@@ -360,6 +360,17 @@ const readOurBlogButtonInThanksForSubscribe =
 const watchAVideoUrl = 'https://youtu.be/OConyxG7HaM';
 const readBlogUrl = testConstants.URLs.ReadBlogLink;
 
+// Get Started page.
+const getStartedUrl = testConstants.URLs.GetStarted;
+const getStartedHeader = '.e2e-test-get-started-page';
+const googleSignUpUrl = testConstants.URLs.ExternalLink.GoogleSignUp;
+const welcomeToOppiaUrl = testConstants.URLs.WelcomeToOppia;
+const electromagnetismUrl = testConstants.URLs.Electromagnetism;
+const programmingWithCarlaUrl = testConstants.URLs.ProgrammingWithCarla;
+const creatingAnExplorationUrl = testConstants.URLs.CreatingAnExploration;
+const embeddingAnExplorationUrl = testConstants.URLs.EmbeddingAnExploration;
+const contactUrl = testConstants.URLs.Contact;
+
 // Selectors for the blog page.
 const blogWelcomeHeadingSelector = '.e2e-test-blog-welcome-heading';
 const blogPostListSelector = '.e2e-test-blog-post-list';
@@ -4107,6 +4118,94 @@ export class LoggedOutUser extends BaseUser {
     ) {
       await this.expectElementToBeVisible(blogSuggestedForYouHeadingSelector);
     }
+  }
+
+  /**
+   * Navigates to the Get Started page.
+   */
+  async navigateToGetStartedPage(): Promise<void> {
+    await this.goto(getStartedUrl);
+    await this.expectElementToBeVisible(getStartedHeader);
+  }
+
+  /**
+   * Clicks the "create one here" link on the Get Started page and verifies
+   * that it opens Google's account sign-up page in a new tab.
+   */
+  async clickCreateOneHereLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'create one here',
+      googleSignUpUrl
+    );
+  }
+
+  /**
+   * Clicks the "Welcome to Oppia" link on the Get Started page and verifies
+   * that it opens the "Welcome to Oppia" exploration in a new tab.
+   */
+  async clickWelcomeToOppiaLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'Welcome to Oppia',
+      welcomeToOppiaUrl
+    );
+  }
+
+  /**
+   * Clicks the "Get Electrified!" link on the Get Started page and verifies
+   * that it opens the electromagnetism collection in a new tab.
+   */
+  async clickGetElectrifiedLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'Get Electrified!',
+      electromagnetismUrl
+    );
+  }
+
+  /**
+   * Clicks the "Programming with Carla" link on the Get Started page and
+   * verifies that it opens the "Programming with Carla" collection in a new
+   * tab.
+   */
+  async clickProgrammingWithCarlaLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'Programming with Carla',
+      programmingWithCarlaUrl
+    );
+  }
+
+  /**
+   * Clicks the "in our user documentation" link on the Get Started page and
+   * verifies that it opens the "Creating an Exploration" documentation in a
+   * new tab.
+   */
+  async clickInOurUserDocumentationLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'in our user documentation',
+      creatingAnExplorationUrl
+    );
+  }
+
+  /**
+   * Clicks the "embed it in your own web page" link on the Get Started page
+   * and verifies that it opens the "Embedding an Exploration" documentation in
+   * a new tab.
+   */
+  async clickEmbedItInYourOwnWebPageLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'embed it in your own web page',
+      embeddingAnExplorationUrl
+    );
+  }
+
+  /**
+   * Clicks the "discover more ways to get involved" link on the Get Started
+   * page and verifies that it navigates to the Contact page.
+   */
+  async clickDiscoverMoreWaysToGetInvolvedLinkOnGetStartedPage(): Promise<void> {
+    await this.clickAndVerifyAnchorWithInnerText(
+      'discover more ways to get involved',
+      contactUrl
+    );
   }
 }
 
